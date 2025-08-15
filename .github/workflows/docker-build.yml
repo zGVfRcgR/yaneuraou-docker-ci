@@ -13,7 +13,11 @@ jobs:
       packages: write
     strategy:
       matrix:
-        opt_level: [ "-O2", "-O3" ] # ここでビルドバリエーションを列挙
+        include:
+          - opt_level: "-O2"
+            tag_suffix: "o2"
+          - opt_level: "-O3"
+            tag_suffix: "o3"
     steps:
       - uses: actions/checkout@v4
 
@@ -31,5 +35,5 @@ jobs:
           build-args: |
             OPT=${{ matrix.opt_level }}
           tags: |
-            ghcr.io/zgvfrcgr/yaneuraou:${{ matrix.opt_level//-/ }}
-            ghcr.io/zgvfrcgr/yaneuraou:${{ github.sha }}-${{ matrix.opt_level//-/ }}
+            ghcr.io/zgvfrcgr/yaneuraou:${{ matrix.tag_suffix }}
+            ghcr.io/zgvfrcgr/yaneuraou:${{ github.sha }}-${{ matrix.tag_suffix }}

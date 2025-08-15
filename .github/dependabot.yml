@@ -1,0 +1,27 @@
+version: 2
+updates:
+  # 1. Docker イメージの更新チェック
+  - package-ecosystem: "docker"
+    directory: "/"             # Dockerfile の場所（例: ルート）
+    schedule:
+      interval: "weekly"       # 毎週チェック（"daily", "monthly" も可）
+      day: "monday"            # 週次なら曜日も指定可
+      time: "04:00"            # UTC 時間
+    commit-message:
+      prefix: "deps(docker)"
+    labels:
+      - "dependencies"
+      - "docker"
+    open-pull-requests-limit: 5
+  # 2. GitHub Actions の更新チェック（CI/CD用）
+  - package-ecosystem: "github-actions"
+    directory: "/"             # .github/workflows/ 以下を対象
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "04:00"
+    commit-message:
+      prefix: "deps(ci)"
+    labels:
+      - "dependencies"
+      - "ci/cd"

@@ -1,0 +1,35 @@
+name: Build O2 & O3 and Push to GHCR
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    strategy:
+      matrix:
+        opt_level: [ "-O2", "-O3" ] # ここでビルドバリエーションを列挙
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and Push Docker Image
+        uses: docker/build-push-action@v5
+        with:
+          push: true
+          build-args: |
+            OPT=${{ matrix.opt_level }}
+          tags: |
+            ghcr.io/zgvfrcgr/yaneuraou:${{ matrix.opt_level//-/ }}
+            ghcr.io/zgvfrcgr/yaneuraou:${{ github.sha }}-${{ matrix.opt_level//-/ }}

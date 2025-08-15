@@ -14,5 +14,8 @@
       "extensions": []
     }
   },
-  "postCreateCommand": "echo 'YaneuraOu -O2 devcontainer ready!'"
+  "postCreateCommand": [
+    "./YaneuraOu-by-gcc", "usi",
+    "echo 'YaneuraOu -O2 devcontainer ready!'"
+  ]
 }

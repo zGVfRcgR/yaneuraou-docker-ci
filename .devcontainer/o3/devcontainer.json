@@ -2,7 +2,7 @@
   "name": "YaneuraOu -O3",
   "image": "ghcr.io/zgvfrcgr/yaneuraou:o3",
   "remoteUser": "root",
-  "workspaceFolder": "/workspace",
+  "workspaceFolder": "/app/src/source",
   "mounts": [
     "source=${localWorkspaceFolder},target=/workspace,type=bind"
   ],
@@ -14,5 +14,8 @@
       "extensions": []
     }
   },
-  "postCreateCommand": "echo 'YaneuraOu -O3 devcontainer ready!'"
+  "postCreateCommand": [
+    "./YaneuraOu-by-gcc", "usi",
+    "echo 'YaneuraOu -O3 devcontainer ready!'"
+  ]
 }

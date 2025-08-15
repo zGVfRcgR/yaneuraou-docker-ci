@@ -1,0 +1,11 @@
+version: "3.9"
+
+services:
+  yaneuraou:
+    image: ghcr.io/zgvfrcgr/yaneuraou:o2
+    container_name: yaneuraou
+    stdin_open: true    # -i
+    tty: true           # -t
+    command: ["./YaneuraOu-by-gcc", "usi"]  # USIモードで起動
+    ports:
+      - "4081:4081"   # ホスト:コンテナ の形式

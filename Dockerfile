@@ -9,6 +9,7 @@ RUN apt-get update && \
         build-essential \
         git \
         clang \
+        lld \
     && rm -rf /var/lib/apt/lists/*
 
 # やねうら王ソースを取得

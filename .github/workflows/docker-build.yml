@@ -3,6 +3,10 @@ name: Build O2 & O3 and Push to GHCR
 on:
   push:
     branches: [ main ]
+    paths:
+      - 'Dockerfile'
+      - '.github/workflows/docker-build.yml'
+
   workflow_dispatch:
 
 jobs:

@@ -13,6 +13,6 @@ COPY . .
 # ARG EVALFILE
 # ENV EVALFILE=$EVALFILE
 
-RUN make build ARCH=x86-64-avx2 OPT=${OPT} -j$(nproc)
+RUN make ARCH=x86-64-avx2 OPT=${OPT} -j$(nproc)
 
 CMD ["./YaneuraOu"]
